@@ -1,8 +1,12 @@
-import {createStore} from 'redux'
-import rootReducer from './reducer'
-import { composeWithDevTools } from 'redux-devtools-extension'
- 
-const extension = composeWithDevTools();
-const store = createStore(rootReducer,extension)
+import filterSlice from "../components/Filters/slice";
+import todoListSlice from "../components/TodoList/slice";
 
-export default store
+import { configureStore } from "@reduxjs/toolkit";
+
+const store = configureStore({
+  reducer: {
+    filters: filterSlice.reducer,
+    todoList: todoListSlice.reducer,
+  },
+});
+export default store;

@@ -1,27 +1,27 @@
 import { Col, Row, Input, Typography, Radio, Select, Tag } from 'antd';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { prorityFilterChanges, searchFilterChange, searchFilterStatus } from '../../redux/actions';
+import filterTodoList from './slice'
 
 const { Search } = Input;
 
 export default function Filters() {
   const dispatch = useDispatch()
-  const [search,setSearch] = useState();
+  // const [search,setSearch] = useState();
   const [filterStatus, setFilterStatus] = useState()
   const [ priority, setPriority] = useState()
   const handleSearch = (e) =>{
-    setSearch(e.target.value);
-    dispatch(searchFilterChange(e.target.value))
+    // setSearch(e.target.value);
+    dispatch(filterTodoList.actions.searchFilter(e.target.value))
   }
   const handleStatus = (e) =>{
     setFilterStatus(e.target.value)
-    dispatch(searchFilterStatus(e.target.value)) 
+    dispatch(filterTodoList.actions.statusFilter(e.target.value)) 
   }
 
   const handlePriority = (value) =>{
     setPriority(value);
-    dispatch(prorityFilterChanges(value))
+    dispatch(filterTodoList.actions.priorityChange(value))
   }
   return (
     <Row justify='center'>
